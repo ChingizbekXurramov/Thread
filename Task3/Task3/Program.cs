@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-
+            
 
             Console.Write("Enter the your number:");
             int number = int.Parse(Console.ReadLine());
@@ -18,48 +18,55 @@
         }
         static void PrimeNumber(int number)
         {
-            string filePath = Path.Combine(@"C:\Users\Hp\Documents\GitHub\3Modul\Thread\Task3", $"Thread-PrimeNumber.txt");
-            if (File.Exists(filePath))
+            
+            string path = "C:\\Users\\Hp\\Documents\\GitHub\\3Modul\\Thread\\Task3\\PrimeNumber.txt";
+            if (!File.Exists(path))
             {
-                Console.WriteLine("Accaount already created!");
-            }
-            else
-            {
-                File.Create(filePath).Close();
-                using (StreamWriter writer = new StreamWriter(filePath))
+                File.Create(path).Close();
+                using (StreamWriter sw = new StreamWriter(path))
                 {
-                    for (int i = 1; i < number; i += 2)
+                    sw.Write(" PrimeNumber ");
+                    for (int i = 0; i < number; i++)
                     {
-                        writer.WriteLine(i);
+
+                        int count = 0;
+                        for (int j = 1; j <= number; j++)
+                        {
+                            if (i % j == 0)
+                            {
+                                count++;
+                            }
+                        }
+                        if (count == 2)
+                        {
+                            sw.Write(i + " ");
+
+                        }
                     }
-
-
                 }
-                Console.WriteLine("Account created successfully");
             }
         }
         static void EvenNumber(int number)
         {
-      
-            string filePath1 = Path.Combine(@"C: \Users\Hp\Documents\GitHub\3Modul\Thread\Task3", $"Thread-EvenNumber.txt");
-            if (File.Exists(filePath1))
+
+
+            string path = "C:\\Users\\Hp\\Documents\\GitHub\\3Modul\\Thread\\Task3\\EvenNumber.txt";
+            if (!File.Exists(path))
             {
-                Console.WriteLine("Accaount already created!");
-            }
-            else
-            {
-                File.Create(filePath1).Close();
-                using (StreamWriter writer1 = new StreamWriter(filePath1))
+                File.Create(path).Close ();
+                using (StreamWriter sw = new StreamWriter(path))
                 {
-
-                  for (int i = 0; i < number; i += 2)
-                  {
-                    writer1.WriteLine(i);
-                  }
-
+                    sw.Write(" EvenNumber: ");
+                    for (int i = 0; i < number; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            sw.Write(i + " ");
+                        }
+                    }
                 }
             }
-            Console.WriteLine("Account created successfully");
+           
         }
     }
     
